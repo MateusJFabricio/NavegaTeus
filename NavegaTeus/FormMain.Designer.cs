@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdicionarGuia = new System.Windows.Forms.Button();
             this.btnRemoverGuia = new System.Windows.Forms.Button();
@@ -193,6 +194,7 @@
             this.ClientSize = new System.Drawing.Size(1031, 521);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "NavegaTeus";
             this.flowLayoutPanel1.ResumeLayout(false);
