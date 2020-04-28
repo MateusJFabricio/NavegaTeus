@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdicionarGuia = new System.Windows.Forms.Button();
@@ -41,11 +42,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.webBrowserMain = new System.Windows.Forms.WebBrowser();
+            this.timerAtualizaInformacoes = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -165,7 +165,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.webBrowserMain);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -173,19 +172,12 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Google";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Enter += new System.EventHandler(this.tabPage_Enter);
             // 
-            // webBrowserMain
+            // timerAtualizaInformacoes
             // 
-            this.webBrowserMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserMain.Location = new System.Drawing.Point(3, 3);
-            this.webBrowserMain.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowserMain.Name = "webBrowserMain";
-            this.webBrowserMain.Size = new System.Drawing.Size(1017, 458);
-            this.webBrowserMain.TabIndex = 0;
-            this.webBrowserMain.Url = new System.Uri("https://www.google.com/", System.UriKind.Absolute);
-            this.webBrowserMain.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webBrowserMain_Navigated);
-            this.webBrowserMain.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowserMain_Navigating);
+            this.timerAtualizaInformacoes.Enabled = true;
+            this.timerAtualizaInformacoes.Interval = 500;
+            this.timerAtualizaInformacoes.Tick += new System.EventHandler(this.timerAtualizaInformacoes_Tick);
             // 
             // FormMain
             // 
@@ -201,7 +193,6 @@
             this.flowLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -217,10 +208,10 @@
         private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.Button btnRemoverGuia;
-        private System.Windows.Forms.WebBrowser webBrowserMain;
         private System.Windows.Forms.Button btnCarregar;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Button btnAvancar;
+        private System.Windows.Forms.Timer timerAtualizaInformacoes;
     }
 }
 
