@@ -12,11 +12,15 @@ namespace NavegaTeus
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+
+            if (args.Length > 0)
+                Application.Run(new FormMain(args[0] == "AutoInit"));
+            else
+                Application.Run(new FormMain(false));
         }
     }
 }
