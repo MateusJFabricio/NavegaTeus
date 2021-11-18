@@ -48,6 +48,11 @@ namespace NavegaTeus
                 cbExibirDataHora.Checked = true;
             }
 
+            if (IniFile.Read("ExibirSemana") == "TRUE")
+            {
+                cbExibirSemana.Checked = true;
+            }
+
             if (IniFile.Read("ExibirTempoProxAtualizacao") == "TRUE")
             {
                 cbExibirTempoRestante.Checked = true;
@@ -137,6 +142,7 @@ namespace NavegaTeus
             IniFile.Write("InicializarComWindows", cbInicializarWindows.Checked ? "TRUE" : "FALSE");
             IniFile.Write("OcultarControles", cbOcultarControles.Checked ? "TRUE" : "FALSE");
             IniFile.Write("ExibirDataHora", cbExibirDataHora.Checked ? "TRUE" : "FALSE");
+            IniFile.Write("ExibirSemana", cbExibirSemana.Checked ? "TRUE" : "FALSE");
             IniFile.Write("ExibirTempoProxAtualizacao", cbExibirTempoRestante.Checked ? "TRUE" : "FALSE");
             IniFile.Write("AutoRefresh", cbAtualizarPagina.Checked ? "TRUE" : "FALSE");
             IniFile.Write("AutoRefreshTime", dtpIntervaloAtualizacaoPagina.Value.ToString());
@@ -173,6 +179,15 @@ namespace NavegaTeus
                 Application.ProductName + ".lnk";
             var shell = new WshShell();
             var shortcut = shell.CreateShortcut(link) as IWshShortcut;
+            shortcut.TargetPath = Application.ExecutablePath;
+            shortcut.WorkingDirectory = Application.StartupPath;
+            shortcut.Arguments = "AutoInit";
+            shortcut.Description = "Este atalho só funciona se estiver configurado para iniciar com o Windows";
+            shortcut.Save();
+
+            link = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) +
+                Path.DirectorySeparatorChar + "RunTime.lnk";
+            shortcut = shell.CreateShortcut(link) as IWshShortcut;
             shortcut.TargetPath = Application.ExecutablePath;
             shortcut.WorkingDirectory = Application.StartupPath;
             shortcut.Arguments = "AutoInit";

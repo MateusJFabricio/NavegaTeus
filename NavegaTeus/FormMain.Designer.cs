@@ -44,7 +44,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lblDataHora = new System.Windows.Forms.Label();
+            this.lblDataHoraSemana = new System.Windows.Forms.Label();
             this.timerAtualizaInformacoes = new System.Windows.Forms.Timer(this.components);
             this.timerAutoRefreshPage = new System.Windows.Forms.Timer(this.components);
             this.timerBtnClose = new System.Windows.Forms.Timer(this.components);
@@ -166,7 +166,7 @@
             // panelMain
             // 
             this.panelMain.Controls.Add(this.lblTempoRestante);
-            this.panelMain.Controls.Add(this.lblDataHora);
+            this.panelMain.Controls.Add(this.lblDataHoraSemana);
             this.panelMain.Controls.Add(this.btnClose);
             this.panelMain.Controls.Add(this.tabControl);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -210,14 +210,14 @@
             // 
             // lblDataHora
             // 
-            this.lblDataHora.AutoSize = true;
-            this.lblDataHora.BackColor = System.Drawing.Color.White;
-            this.lblDataHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataHora.Location = new System.Drawing.Point(3, 11);
-            this.lblDataHora.Name = "lblDataHora";
-            this.lblDataHora.Size = new System.Drawing.Size(381, 31);
-            this.lblDataHora.TabIndex = 0;
-            this.lblDataHora.Text = "Data e hora: 10/12/2021 14:35";
+            this.lblDataHoraSemana.AutoSize = true;
+            this.lblDataHoraSemana.BackColor = System.Drawing.Color.White;
+            this.lblDataHoraSemana.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataHoraSemana.Location = new System.Drawing.Point(3, 11);
+            this.lblDataHoraSemana.Name = "lblDataHora";
+            this.lblDataHoraSemana.Size = new System.Drawing.Size(381, 31);
+            this.lblDataHoraSemana.TabIndex = 0;
+            this.lblDataHoraSemana.Text = "Data e hora: 10/12/2021 14:35";
             // 
             // timerAtualizaInformacoes
             // 
@@ -291,7 +291,7 @@
         private System.Windows.Forms.Button btnAvancar;
         private System.Windows.Forms.Timer timerAtualizaInformacoes;
         private System.Windows.Forms.Button btnInicializacao;
-        private System.Windows.Forms.Label lblDataHora;
+        private System.Windows.Forms.Label lblDataHoraSemana;
         private System.Windows.Forms.Timer timerAutoRefreshPage;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Timer timerBtnClose;

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace NavegaTeus
 
         public string TituloAtual { get; private set; }
         public bool AutoInit { get; set; }
+        private bool ExibirSemana = false, ExibirDataHora = false;
         public IniFile IniFile { get; set; }
         public DateTime AutoRefreshInterval { get; set; }
         private DateTime LastAutoRefresh = DateTime.Now;
@@ -67,28 +69,34 @@ namespace NavegaTeus
                 }
 
                 //Carrega o label de data a hora
+                if (IniFile.Read("ExibirDataHora") == "TRUE")
+                {
+                    lblDataHoraSemana.Visible = true;
+                    ExibirDataHora = true;
+                }
+
+                //Carrega o label de semana
+                if (!lblDataHoraSemana.Visible && IniFile.Read("ExibirSemana") == "TRUE")
+                {
+                    lblDataHoraSemana.Visible = true;
+                    ExibirSemana = true;
+                }
+
+                //Carrega as cores do label de data e hora e a fonte
                 try
                 {
-                    lblDataHora.Visible = IniFile.Read("ExibirDataHora") == "TRUE";
                     TypeConverter converter = TypeDescriptor.GetConverter(typeof(Font));
-                    lblDataHora.Font = (Font)converter.ConvertFromString(IniFile.Read("DataHoraFonte"));
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("Houve um problema ao configurar a fonte da DataHora: " + ex.Message);
-                }
-                //Carrega as cores do label de data e hora
-                try
-                {
-                    lblDataHora.BackColor = Color.FromArgb(Convert.ToInt32(IniFile.Read("DataHoraCorFundo")));
-                    lblDataHora.ForeColor = Color.FromArgb(Convert.ToInt32(IniFile.Read("DataHoraCorLetra")));
+                    lblDataHoraSemana.Font = (Font)converter.ConvertFromString(IniFile.Read("DataHoraFonte"));
+                    lblDataHoraSemana.BackColor = Color.FromArgb(Convert.ToInt32(IniFile.Read("DataHoraCorFundo")));
+                    lblDataHoraSemana.ForeColor = Color.FromArgb(Convert.ToInt32(IniFile.Read("DataHoraCorLetra")));
                 }
                 catch (Exception ex)
                 {
-                    lblDataHora.BackColor = Color.White;
-                    lblDataHora.ForeColor = Color.Black;
-                    MessageBox.Show("Houve um problema ao configurar as cores configuradas da DataHora: " + ex.Message);
+                    lblDataHoraSemana.BackColor = Color.White;
+                    lblDataHoraSemana.ForeColor = Color.Black;
+                    MessageBox.Show("Houve um problema ao configurar o label de data e hora: " + ex.Message);
                 }
+
                 //Carrega o label de proxima atualizacao
                 try
                 {
@@ -140,7 +148,7 @@ namespace NavegaTeus
                     browser.TitleChanged += Browser_TitleChanged;
                     timerBtnClose.Start();
                     panelMain.Controls.Add(browser);
-                    lblDataHora.BringToFront();
+                    lblDataHoraSemana.BringToFront();
                 }
                 catch(Exception ex)
                 {
@@ -152,7 +160,7 @@ namespace NavegaTeus
             {
                 btnClose.Visible = false;
                 flowLayoutPanelSuperior.Visible = true;
-                lblDataHora.Visible = false;
+                lblDataHoraSemana.Visible = false;
                 lblTempoRestante.Visible = false;
 
                 var browser = new ChromiumWebBrowser("www.google.com");
@@ -309,7 +317,14 @@ namespace NavegaTeus
 
         private void timerRelogio_Tick(object sender, EventArgs e)
         {
-            lblDataHora.Text = "Data e Hora: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            //Carrega o label de semana
+            if (ExibirDataHora) lblDataHoraSemana.Text = "Data e Hora: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+
+            if (ExibirDataHora && ExibirSemana)
+                lblDataHoraSemana.Text += " - Week: " + NumeroSemanaAno(DateTime.Now);
+            else if (!ExibirDataHora && ExibirSemana)
+                lblDataHoraSemana.Text = "Week: "  + NumeroSemanaAno(DateTime.Now);
+
             var proximaAtualizacao = LastAutoRefresh.TimeOfDay + AutoRefreshInterval.TimeOfDay;
             double horas = (proximaAtualizacao - DateTime.Now.TimeOfDay).Hours;
             double minutos = (proximaAtualizacao - DateTime.Now.TimeOfDay).Minutes;
@@ -327,6 +342,16 @@ namespace NavegaTeus
             {
                 lblTempoRestante.Text += segundos.ToString() + " seg";
             }
+        }
+
+        private int NumeroSemanaAno(DateTime data)
+        {
+            CultureInfo cul = CultureInfo.CurrentCulture;
+
+            return cul.Calendar.GetWeekOfYear(
+                data,
+                CalendarWeekRule.FirstDay,
+                DayOfWeek.Monday);
         }
     }
 }
