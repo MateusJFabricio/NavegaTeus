@@ -350,8 +350,8 @@ namespace NavegaTeus
 
             return cul.Calendar.GetWeekOfYear(
                 data,
-                CalendarWeekRule.FirstDay,
-                DayOfWeek.Monday);
+                CalendarWeekRule.FirstFullWeek,
+                DayOfWeek.Sunday);
         }
     }
 }
