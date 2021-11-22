@@ -1,4 +1,5 @@
-﻿using CefSharp.WinForms;
+﻿using CefSharp;
+using CefSharp.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace NavegaTeus
         public bool AutoInit { get; set; }
         private bool ExibirSemana = false, ExibirDataHora = false;
         public IniFile IniFile { get; set; }
+        public ICookieManager CookieManager { get; }
         public DateTime AutoRefreshInterval { get; set; }
         private DateTime LastAutoRefresh = DateTime.Now;
         private DateTime TimebtnClose = DateTime.Now;
@@ -32,6 +34,10 @@ namespace NavegaTeus
         {
             AutoInit = autoInit;
             IniFile = new IniFile("NavegateusConfig.ini");
+            CookieManager = Cef.GetGlobalCookieManager();
+            CefSettings settings = new CefSettings();
+            settings.CachePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\CEF";
+            Cef.Initialize(settings);
             InitializeComponent();
 
             ConfiguraComponentes();
@@ -343,7 +349,6 @@ namespace NavegaTeus
                 lblTempoRestante.Text += segundos.ToString() + " seg";
             }
         }
-
         private int NumeroSemanaAno(DateTime data)
         {
             CultureInfo cul = CultureInfo.CurrentCulture;

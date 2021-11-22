@@ -41,16 +41,16 @@
             this.btnFixar = new System.Windows.Forms.Button();
             this.btnInicializacao = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.lblTempoRestante = new System.Windows.Forms.Label();
+            this.lblDataHoraSemana = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lblDataHoraSemana = new System.Windows.Forms.Label();
             this.timerAtualizaInformacoes = new System.Windows.Forms.Timer(this.components);
             this.timerAutoRefreshPage = new System.Windows.Forms.Timer(this.components);
             this.timerBtnClose = new System.Windows.Forms.Timer(this.components);
             this.timerMouseMonitor = new System.Windows.Forms.Timer(this.components);
             this.timerRelogio = new System.Windows.Forms.Timer(this.components);
-            this.lblTempoRestante = new System.Windows.Forms.Label();
             this.flowLayoutPanelSuperior.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -71,7 +71,7 @@
             this.flowLayoutPanelSuperior.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanelSuperior.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanelSuperior.Name = "flowLayoutPanelSuperior";
-            this.flowLayoutPanelSuperior.Size = new System.Drawing.Size(1031, 31);
+            this.flowLayoutPanelSuperior.Size = new System.Drawing.Size(1163, 31);
             this.flowLayoutPanelSuperior.TabIndex = 0;
             // 
             // btnAdicionarGuia
@@ -172,15 +172,37 @@
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 31);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1031, 490);
+            this.panelMain.Size = new System.Drawing.Size(1163, 490);
             this.panelMain.TabIndex = 1;
+            // 
+            // lblTempoRestante
+            // 
+            this.lblTempoRestante.AutoSize = true;
+            this.lblTempoRestante.BackColor = System.Drawing.Color.White;
+            this.lblTempoRestante.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTempoRestante.Location = new System.Drawing.Point(3, 46);
+            this.lblTempoRestante.Name = "lblTempoRestante";
+            this.lblTempoRestante.Size = new System.Drawing.Size(408, 31);
+            this.lblTempoRestante.TabIndex = 3;
+            this.lblTempoRestante.Text = "Proxima Atualizacao: 1 dia 10:08";
+            // 
+            // lblDataHoraSemana
+            // 
+            this.lblDataHoraSemana.AutoSize = true;
+            this.lblDataHoraSemana.BackColor = System.Drawing.Color.White;
+            this.lblDataHoraSemana.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataHoraSemana.Location = new System.Drawing.Point(3, 11);
+            this.lblDataHoraSemana.Name = "lblDataHoraSemana";
+            this.lblDataHoraSemana.Size = new System.Drawing.Size(381, 31);
+            this.lblDataHoraSemana.TabIndex = 0;
+            this.lblDataHoraSemana.Text = "Data e hora: 10/12/2021 14:35";
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.Red;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(971, 14);
+            this.btnClose.Location = new System.Drawing.Point(1103, 14);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(56, 44);
             this.btnClose.TabIndex = 1;
@@ -195,7 +217,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1031, 490);
+            this.tabControl.Size = new System.Drawing.Size(1163, 490);
             this.tabControl.TabIndex = 2;
             // 
             // tabPage1
@@ -203,21 +225,10 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1023, 464);
+            this.tabPage1.Size = new System.Drawing.Size(1155, 464);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Google";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // lblDataHora
-            // 
-            this.lblDataHoraSemana.AutoSize = true;
-            this.lblDataHoraSemana.BackColor = System.Drawing.Color.White;
-            this.lblDataHoraSemana.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataHoraSemana.Location = new System.Drawing.Point(3, 11);
-            this.lblDataHoraSemana.Name = "lblDataHora";
-            this.lblDataHoraSemana.Size = new System.Drawing.Size(381, 31);
-            this.lblDataHoraSemana.TabIndex = 0;
-            this.lblDataHoraSemana.Text = "Data e hora: 10/12/2021 14:35";
             // 
             // timerAtualizaInformacoes
             // 
@@ -245,22 +256,11 @@
             this.timerRelogio.Interval = 1000;
             this.timerRelogio.Tick += new System.EventHandler(this.timerRelogio_Tick);
             // 
-            // lblTempoRestante
-            // 
-            this.lblTempoRestante.AutoSize = true;
-            this.lblTempoRestante.BackColor = System.Drawing.Color.White;
-            this.lblTempoRestante.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTempoRestante.Location = new System.Drawing.Point(3, 46);
-            this.lblTempoRestante.Name = "lblTempoRestante";
-            this.lblTempoRestante.Size = new System.Drawing.Size(408, 31);
-            this.lblTempoRestante.TabIndex = 3;
-            this.lblTempoRestante.Text = "Proxima Atualizacao: 1 dia 10:08";
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 521);
+            this.ClientSize = new System.Drawing.Size(1163, 521);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.flowLayoutPanelSuperior);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
